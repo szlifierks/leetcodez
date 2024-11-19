@@ -1,0 +1,35 @@
+#include <iostream>
+#include <vector>
+#include <unordered_set>
+
+using namespace std;
+
+class Solution {
+public:
+    long long maximumSubarraySum(vector<int>& nums, int k) {
+        int n = nums.size();
+        long long maxsum = 0;
+
+        if (k > n) {
+            return 0;
+        }
+
+        for (int i = 0; i <= n - k; i++) {
+            long long sum = 0;
+            unordered_set<int> unique_elements;
+            bool valid = true;
+            for (int j = i; j < i + k; j++) {
+                if (unique_elements.contains(nums[j])) {
+                    valid = false;
+                    break;
+                }
+                unique_elements.insert(nums[j]);
+                sum += nums[j];
+            }
+            if (valid) {
+                maxsum = max(maxsum, sum);
+            }
+        }
+        return maxsum;
+    }
+};
