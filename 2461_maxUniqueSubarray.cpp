@@ -25,7 +25,7 @@ public:
                 sum -= nums[i - k];
             }
 
-            if (freq_map.size() == k) {
+            if (unique.size() == k) {
                 maxsum = max(maxsum, current_sum);
             }
         }
